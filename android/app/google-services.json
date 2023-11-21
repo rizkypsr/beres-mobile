@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "184764825538",
+    "project_id": "beres-b2d4f",
+    "storage_bucket": "beres-b2d4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184764825538:android:ee4c166703cec259ed605b",
+        "android_client_info": {
+          "package_name": "com.beres.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184764825538-0tloevsn5hralo9a9cgseecsi5r86poc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTSwgROYBiW9nI_rNzBJ8G9Yt4pyUysMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184764825538-0tloevsn5hralo9a9cgseecsi5r86poc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184764825538:android:53f8dc5418a57ca0ed605b",
+        "android_client_info": {
+          "package_name": "com.example.ovo_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184764825538-0tloevsn5hralo9a9cgseecsi5r86poc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTSwgROYBiW9nI_rNzBJ8G9Yt4pyUysMw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184764825538-0tloevsn5hralo9a9cgseecsi5r86poc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

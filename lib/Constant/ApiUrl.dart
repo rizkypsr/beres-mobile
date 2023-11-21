@@ -1,0 +1,25 @@
+import 'package:ovo_ui/Constant/ProductJsModel.dart';
+
+const baseUrl = 'https://staging.tes.beres.my.id/api/';
+const productjsUrl = baseUrl + 'produkjs';
+const kecamatanUrl = baseUrl + 'kecamatan';
+const tokoUmkmUrl = baseUrl + 'umkm';
+const productUmkmUrl = baseUrl + 'produkumkm';
+const ppobcatUrl = baseUrl + 'ppob';
+const detailPPOBUrl = baseUrl + 'detailppob';
+const transPPOBUrl = baseUrl + 'transaksippobadd';
+const customerUrl = baseUrl + 'customer';
+const customergetUrl = baseUrl + 'customerget';
+const LogsUrl = baseUrl + 'log';
+const LogsUrlppob = baseUrl + 'transaksippob';
+const LogsUrljs = baseUrl + 'transaksijs';
+const LogsUrlbyrtoko = baseUrl + 'bayartoko';
+const LogsUrltransfer = baseUrl + 'transfer';
+const jemputsampahUrl = baseUrl + 'ljadd';
+const TransferUrl = baseUrl + 'transferadd';
+const faqUrl = baseUrl + 'faq';
+const qurbanUrl = baseUrl + 'qurban';
+const jualsampahUrl = baseUrl + 'transaksijsadd';
+const bannerUrl = baseUrl + 'banner';
+const waUrl = baseUrl + 'wa';
+const TeleUrl = baseUrl + 'te';
