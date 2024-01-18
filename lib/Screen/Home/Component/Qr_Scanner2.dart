@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ovo_ui/Constant/Color.dart';
 import 'package:ovo_ui/Constant/ProductJsModel.dart';
-import 'package:ovo_ui/Screen/Home/Component/JemputSampah.dart';
+import 'package:ovo_ui/features/sedekah/presentations/jemput_sampah_screen.dart';
 import 'package:ovo_ui/Screen/Home/Component/JemputSampah_services.dart';
 import 'package:ovo_ui/Screen/Home/Component/OVO_Cash.dart';
 import 'package:ovo_ui/Screen/Home/Component/confirm.dart';

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ovo_ui/Constant/Color.dart';
@@ -83,10 +84,12 @@ class _ProductView2 extends State<ProductView2> {
                         child: listproductjs != null
                             ? listproductjs.length > 0
                                 ? Column(children: [
-                                    Image.network(
-                                      listproductjs[index].imageum,
-                                      height: 100,
+                                    CachedNetworkImage(
+                                      imageUrl: listproductjs[index].imageum,
                                       fit: BoxFit.cover,
+                                      height: 100,
+                                      errorWidget: (context, url, error) =>
+                                          Center(child: Icon(Icons.error)),
                                     ),
                                     SizedBox(
                                       height: 7,

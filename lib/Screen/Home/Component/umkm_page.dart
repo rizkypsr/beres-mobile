@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ovo_ui/Constant/Color.dart';
@@ -29,7 +30,7 @@ class _UMKMPage extends State<UMKMPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: dropdown(
+      appBar: AppBar(title: Dropdown(
         onChange: (id) {
           selected_id_kecamatan = id;
           _getData();
@@ -166,9 +167,11 @@ class InfoCard extends StatelessWidget {
               child: Container(
                 height: 83,
                 width: double.infinity,
-                child: Image.network(
-                  imgpath!,
+                child: CachedNetworkImage(
+                  imageUrl: imgpath!,
                   fit: BoxFit.cover,
+                  errorWidget: (context, url, error) =>
+                      Center(child: Icon(Icons.error)),
                 ),
               ),
             ),

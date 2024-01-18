@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ovo_ui/Constant/Color.dart';
 import 'package:ovo_ui/Constant/ProductJsModel.dart';
@@ -59,11 +60,14 @@ class _qurbanSampahState extends State<qurbanSampah> {
                                     ],
                                   ),
                                   child: Center(
-                                    child: Image.network(
-                                      listqurbanjs[index].gambarqurban,
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          listqurbanjs[index].gambarqurban,
+                                      fit: BoxFit.cover,
                                       height: 120,
                                       width: double.infinity,
-                                      fit: BoxFit.cover,
+                                      errorWidget: (context, url, error) =>
+                                          Center(child: Icon(Icons.error)),
                                     ),
                                   ),
                                 ),

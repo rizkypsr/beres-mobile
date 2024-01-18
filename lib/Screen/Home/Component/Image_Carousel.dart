@@ -1,142 +1,83 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:full_screen_image/full_screen_image.dart';
+import 'package:get/get.dart';
+import 'package:ovo_ui/Constant/ApiUrl.dart';
 import 'package:ovo_ui/Constant/Color.dart';
-import 'package:ovo_ui/Constant/ProductJsModel.dart';
-import 'package:ovo_ui/Screen/Home/Component/bannerjs_services.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:ovo_ui/features/home/controllers/info_controller.dart';
 
-class Carouselmodel {
-  String imgpath;
-  Function onpress;
-  Carouselmodel({required this.imgpath, required this.onpress});
-}
-
-launchURL(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
-
-final List<Carouselmodel> imgList = [
-  new Carouselmodel(
-      imgpath: 'assets/images/OVO_new-user_landingpage.jpg',
-      onpress: () {
-        launchURL(
-            "https://www.grab.com/id/en/blog/transaksi-di-merchant-pilihan-ovo-cashback-30/");
-      }),
-  new Carouselmodel(
-      imgpath: 'assets/images/CLBK-OVO.jpg',
-      onpress: () {
-        launchURL("https://www.ovo.id/deals/view/27247");
-      }),
-  new Carouselmodel(
-      imgpath: 'assets/images/bayardisini.jpg',
-      onpress: () {
-        launchURL("https://www.ovo.id/");
-      }),
-  new Carouselmodel(
-      imgpath: 'assets/images/sos.jpg',
-      onpress: () {
-        launchURL("https://ovo.id/deals/view/27015");
-      }),
-  new Carouselmodel(
-      imgpath: 'assets/images/double.jpg',
-      onpress: () {
-        launchURL("https://www.ovo.id/deals/view/23786");
-      }),
-];
-
-final List<Widget> imageSliders = imgList
-    .map((Carouselmodel c) => Container(
-          child: GestureDetector(
-            onTap: () => c.onpress,
-            child: Container(
-              margin: EdgeInsets.only(right: 7.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                child: Image.asset(c.imgpath, fit: BoxFit.cover, width: 1000.0),
-              ),
-            ),
-          ),
-        ))
-    .toList();
-
-class Imagecarousel extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _ImagecarouselState();
-  }
-}
-
-class _ImagecarouselState extends State<Imagecarousel> {
-  int _current = 0;
-  List<Widget> listWidget = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getData();
-  }
-
-  void getData() async {
-    List<Bannermodel> listBanner = await getbannerJson.getbannerJs();
-    listWidget = listBanner.map((Bannermodel e) {
-      return Container(
-          child: GestureDetector(
-        onTap: () => launchURL(e.gambarbanner),
-        child: Container(
-          margin: EdgeInsets.only(right: 7.0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(Radius.circular(12.0)),
-            child:
-                Image.network(e.gambarbanner, fit: BoxFit.cover, width: 1000.0),
-          ),
-        ),
-      ));
-    }).toList();
-
-    setState(() {});
-  }
-
+class Imagecarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        CarouselSlider(
-          options: CarouselOptions(
-              initialPage: 0,
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              height: 126,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _current = index;
-                });
-              }),
-          items: listWidget,
-        ),
-        SizedBox(
-          height: 13,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: imgList.map((url) {
-            int index = imgList.indexOf(url);
-            return Container(
-              width: 6.0,
-              height: 6.0,
-              margin: EdgeInsets.symmetric(horizontal: 2.0),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _current == index ? cyantext : Colors.grey[300],
-              ),
-            );
-          }).toList(),
-        ),
-      ],
-    );
+    final InfoController infoController = Get.put(InfoController());
+
+    return Obx(() {
+      if (infoController.isLoading.value) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (infoController.info.isEmpty) {
+        return Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 42),
+            child: Text('Tidak ada info dan promo spesial'),
+          ),
+        );
+      } else {
+        return Column(
+          children: [
+            CarouselSlider(
+              options: CarouselOptions(
+                  initialPage: 0,
+                  enableInfiniteScroll: true,
+                  autoPlay: true,
+                  height: 126,
+                  onPageChanged: (index, reason) {
+                    infoController.changeIndex(index);
+                  }),
+              items: infoController.info.map((e) {
+                return Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: FullScreenWidget(
+                      disposeLevel: DisposeLevel.Low,
+                      child: Center(
+                        child: CachedNetworkImage(
+                          imageUrl: "$baseUrl/storage/banner/${e.image}",
+                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          errorWidget: (context, url, error) =>
+                              Center(child: Icon(Icons.error)),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: infoController.info.map((info) {
+                int index = infoController.info.indexOf(info);
+                return Container(
+                  width: 8.0,
+                  height: 8.0,
+                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: infoController.currentIndex.value == index
+                        ? cyantext
+                        : Colors.grey, // Customize the indicator color
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        );
+      }
+    });
   }
 }

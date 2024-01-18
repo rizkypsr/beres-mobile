@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ovo_ui/Constant/Color.dart';
 import 'package:flutter/material.dart';
-import 'package:ovo_ui/Screen/Home/HomePage.dart';
-import 'package:ovo_ui/Screen/MainPage/MainPage.dart';
+import 'package:ovo_ui/features/home/presentations/home_screen.dart';
 import 'package:lottie/lottie.dart';
+import 'package:ovo_ui/main_screen.dart';
 
 class SuccessPage extends StatefulWidget {
   final String? id_user;
@@ -59,10 +60,7 @@ class _SuccessPage extends State<SuccessPage> {
                         MaterialStateProperty.all<Color>(Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return MainPage();
-                    }));
+                    Get.off(() => MainScreen());
                   },
                   child: Text(
                     "Kembali ke Beranda",

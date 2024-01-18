@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ovo_ui/Constant/ProductJsModel.dart';
@@ -47,7 +48,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(title: dropdown(
+        appBar: AppBar(title: Dropdown(
           onChange: (id) {
             id_k = id;
             _getData();
@@ -133,7 +134,9 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                     id: listproductjs1[index].id!,
                                     imgpath: listproductjs1[index].imagejs!,
                                     title: listproductjs1[index].juduljs!,
-                                    harga: listproductjs1[index].hargajs!,
+                                    harga: listproductjs1[index]
+                                        .hargajs!
+                                        .toString(),
                                     onChange: (id, judul, berat, totalLama,
                                         totalPerItem) {
                                       totalHarga = totalHarga - totalLama;
@@ -236,9 +239,11 @@ class _InfoCardState extends State<InfoCard> {
               child: Container(
                 height: 83,
                 width: 83,
-                child: Image.network(
-                  widget.imgpath!,
+                child: CachedNetworkImage(
+                  imageUrl: widget.imgpath!,
                   fit: BoxFit.cover,
+                  errorWidget: (context, url, error) =>
+                      Center(child: Icon(Icons.error)),
                 ),
               ),
             ),

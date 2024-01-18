@@ -16,12 +16,15 @@ TextTheme basetextTheme(TextTheme base) {
 ThemeData mytheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-      // accentColor: darkpurple,
       textTheme: basetextTheme(base.textTheme),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
           backgroundColor: darkpurple,
           elevation: 0,
           splashColor: Colors.transparent),
-      appBarTheme: AppBarTheme(color: darkpurple, elevation: 0),
+      appBarTheme: AppBarTheme(
+        color: darkpurple,
+        elevation: 0,
+        foregroundColor: Colors.white,
+      ),
       scaffoldBackgroundColor: Colors.grey[100]);
 }

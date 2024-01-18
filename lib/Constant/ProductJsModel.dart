@@ -3,7 +3,7 @@ class ProductJSModel {
   final String? juduljs;
   final String? imagejs;
   final String? deskripsijs;
-  final String? hargajs;
+  final int? hargajs;
   final String? satuanjs;
 
   ProductJSModel(

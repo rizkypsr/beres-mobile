@@ -1,5 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:ovo_ui/Constant/ApiUrl.dart';
 import 'package:ovo_ui/Constant/Color.dart';
 import 'package:http/http.dart' as http;
 import 'package:ovo_ui/Screen/Home/Component/Transaction_page.dart';
@@ -19,19 +20,17 @@ class ProductView extends StatefulWidget {
 }
 
 class _ProductView extends State<ProductView> {
-  // Future apicall() async {
-  //   http.Response response;
-  //   response = await http
-  //       .get(Uri.parse("https://banksampah.beres.my.id/api/produkjs"));
-  //   if (response.statusCode == 200) {
-  //     setState(() {
-  //       // stringResponse = response.body;
-  //       dynamic mapResponse = jsonDecode(response.body);
-  //       dynamic listResponse =
-  //           mapResponse['data'];
-  //     });
-  //   }
-  // }
+  Future apicall() async {
+    http.Response response;
+    response = await http.get(Uri.parse("$baseUrlApi/productjs"));
+    if (response.statusCode == 200) {
+      setState(() {
+        // stringResponse = response.body;
+        dynamic mapResponse = jsonDecode(response.body);
+        dynamic listResponse = mapResponse['data'];
+      });
+    }
+  }
 
   List<ProductJSModel> listproductjs = [];
   int selected_id_kecamatan = 0;
@@ -50,7 +49,7 @@ class _ProductView extends State<ProductView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: dropdown(
+      appBar: AppBar(title: Dropdown(
         onChange: (id) {
           selected_id_kecamatan = id;
           _getData();
@@ -123,10 +122,16 @@ class _ProductView extends State<ProductView> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
-                                              Image.network(
-                                                listproductjs[index].imagejs!,
-                                                height: 120,
+                                              CachedNetworkImage(
+                                                imageUrl: listproductjs[index]
+                                                    .imagejs!,
                                                 fit: BoxFit.cover,
+                                                height: 120,
+                                                errorWidget: (context, url,
+                                                        error) =>
+                                                    Center(
+                                                        child:
+                                                            Icon(Icons.error)),
                                               ),
                                               SizedBox(
                                                 height: 7,
@@ -138,31 +143,34 @@ class _ProductView extends State<ProductView> {
                                                           FontWeight.w800,
                                                       color: Colors.black87)),
                                               Text(
-                                                  listproductjs[index]
-                                                          .hargajs! +
+                                                  (listproductjs[index]
+                                                          .hargajs!
+                                                          .toString() +
                                                       " Poin" +
                                                       "/" +
                                                       listproductjs[index]
-                                                          .satuanjs!,
+                                                          .satuanjs!),
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       color: Colors.black87)),
-
                                               Text(
                                                   listproductjs[index]
                                                       .deskripsijs!,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     color: Colors.blue,
-                                                  ))
-                                              // Text(
-                                              //     "/ " +
-                                              //         listproductjs[index].satuanjs,
-                                              //     textAlign: TextAlign.left,
-                                              //     style: TextStyle(
-                                              //         fontWeight: FontWeight.w600,
-                                              //         color: Colors.black87)),
+                                                  )),
+                                              Text(
+                                                  "/ " +
+                                                      listproductjs[index]
+                                                          .satuanjs
+                                                          .toString(),
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Colors.black87)),
                                             ]),
                                       )
                                     : Container(
@@ -173,10 +181,16 @@ class _ProductView extends State<ProductView> {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
                                             children: [
-                                              Image.network(
-                                                listproductjs[index].imagejs!,
-                                                height: 120,
+                                              CachedNetworkImage(
+                                                imageUrl: listproductjs[index]
+                                                    .imagejs!,
                                                 fit: BoxFit.cover,
+                                                height: 120,
+                                                errorWidget: (context, url,
+                                                        error) =>
+                                                    Center(
+                                                        child:
+                                                            Icon(Icons.error)),
                                               ),
                                               SizedBox(
                                                 height: 7,
@@ -188,29 +202,35 @@ class _ProductView extends State<ProductView> {
                                                           FontWeight.w800,
                                                       color: Colors.black87)),
                                               Text(
-                                                  listproductjs[index]
-                                                          .hargajs! +
+                                                  (listproductjs[index]
+                                                          .hargajs!
+                                                          .toString() +
                                                       " Poin" +
                                                       "/" +
                                                       listproductjs[index]
-                                                          .satuanjs!,
+                                                          .satuanjs!),
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w600,
                                                       color: Colors.black87)),
-
-                                              // Text(listproductjs[index].deskripsijs,
-                                              //     style: TextStyle(
-                                              //       fontWeight: FontWeight.w600,
-                                              //       color: Colors.blue,
-                                              //     ))
-                                              // Text(
-                                              //     "/ " +
-                                              //         listproductjs[index].satuanjs,
-                                              //     textAlign: TextAlign.left,
-                                              //     style: TextStyle(
-                                              //         fontWeight: FontWeight.w600,
-                                              //         color: Colors.black87)),
+                                              Text(
+                                                  listproductjs[index]
+                                                      .deskripsijs
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.blue,
+                                                  )),
+                                              Text(
+                                                  "/ " +
+                                                      listproductjs[index]
+                                                          .satuanjs
+                                                          .toString(),
+                                                  textAlign: TextAlign.left,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Colors.black87)),
                                             ]),
                                       )
                                 : SizedBox()

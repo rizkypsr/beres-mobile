@@ -12,7 +12,6 @@ class TopUpKe extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(bottom: 10),
-      padding: EdgeInsets.fromLTRB(16, 17, 22, 21),
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

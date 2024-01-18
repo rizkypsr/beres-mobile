@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ovo_ui/Screen/Home/Component/dropdown_city.dart';
-import 'package:ovo_ui/Screen/Home/Component/help_page.dart';
+import 'package:ovo_ui/features/help/presentations/help_screen.dart';
 
 class mainappbar extends StatelessWidget {
   const mainappbar({Key? key, this.title}) : super(key: key);
@@ -22,7 +22,7 @@ class mainappbar extends StatelessWidget {
               onPressed: () async {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
-                  return HelpPages();
+                  return HelpScreen();
                 }));
               },
               icon: Icon(Icons.help),

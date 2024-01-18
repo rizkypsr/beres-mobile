@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ovo_ui/Constant/Color.dart';
 import 'package:flutter/material.dart';
-import 'package:ovo_ui/Screen/Home/HomePage.dart';
-import 'package:ovo_ui/Screen/MainPage/MainPage.dart';
+import 'package:ovo_ui/features/home/presentations/home_screen.dart';
 import 'package:lottie/lottie.dart';
 
 class FailedPage extends StatefulWidget {
@@ -59,10 +58,10 @@ class _FailedPage extends State<FailedPage> {
                         MaterialStateProperty.all<Color>(Colors.white),
                   ),
                   onPressed: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return MainPage();
-                    }));
+                    // Navigator.of(context)
+                    //     .push(MaterialPageRoute(builder: (context) {
+                    //   return MainPage();
+                    // }));
                   },
                   child: Text(
                     "Kembali ke Beranda",

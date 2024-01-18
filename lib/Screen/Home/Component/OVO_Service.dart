@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:ovo_ui/Constant/Color.dart';
 import 'package:ovo_ui/Screen/Home/Component/Transaction_page.dart';
 import 'package:ovo_ui/Screen/Home/Component/productview.dart';
 import 'package:ovo_ui/Screen/Home/Component/umkm_page.dart';
 import 'package:ovo_ui/Screen/TopUp/InstantTopUp/InstanTopUp.dart';
+import 'package:ovo_ui/features/jual_sampah/presentations/jual_sampah_product_screen.dart';
+import 'package:ovo_ui/features/ppob/presentations/ppob_screen.dart';
+import 'package:ovo_ui/features/umkm/presentations/umkm_screen.dart';
 
 class TopUpService extends StatelessWidget {
   const TopUpService({
@@ -31,27 +35,24 @@ class TopUpService extends StatelessWidget {
             iconpath: "assets/images/bin.png",
             text: "Jual Sampah",
             ontap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return ProductView();
-              }));
+              Get.to(() => JualSampahProductScreen());
             },
           ),
           TopupBTN(
             iconpath: "assets/images/cart.png",
             text: "UMKM Kita",
             ontap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return UMKMPage();
-              }));
+              Get.to(() => UMKMScreen());
             },
           ),
           TopupBTN(
             iconpath: "assets/images/ppob.png",
             text: "PPOB",
             ontap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return InstantTopUp();
-              }));
+              // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+              //   return InstantTopUp();
+              // }));
+              Get.to(() => PpobScreen());
             },
           ),
         ],

@@ -6,7 +6,7 @@ import 'package:ovo_ui/Constant/Color.dart';
 import 'package:ovo_ui/Screen/Home/Component/OVO_Cash.dart';
 import 'package:ovo_ui/Screen/Home/Component/Purple_BG.dart';
 import 'package:ovo_ui/Screen/Home/Component/transfer.dart';
-import 'package:ovo_ui/Screen/MainPage/MainPage.dart';
+import 'package:ovo_ui/main_screen.dart';
 
 class UserPayment extends StatefulWidget {
   final String? id_detail;
@@ -183,7 +183,7 @@ class _UserPayment extends State<UserPayment> {
         ),
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return MainPage();
+            return MainScreen();
           }));
         },
         child: Text("Kembali halaman utama"),

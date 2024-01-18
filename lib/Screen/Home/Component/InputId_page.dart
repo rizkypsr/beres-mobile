@@ -13,7 +13,7 @@ import 'package:ovo_ui/Screen/Home/Component/response.dart';
 import 'package:ovo_ui/Screen/Home/Component/transjs_service.dart';
 import 'package:ovo_ui/Screen/Home/Component/transppob_services.dart';
 import 'package:ovo_ui/Screen/Home/Component/userpayment.dart';
-import 'package:ovo_ui/Screen/Home/HomePage.dart';
+import 'package:ovo_ui/features/home/presentations/home_screen.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
