@@ -1,4 +1,4 @@
-package com.example.beres_mobile
+package com.beres.app
 
 import io.flutter.embedding.android.FlutterActivity
 
